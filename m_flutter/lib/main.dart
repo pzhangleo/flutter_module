@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m_flutter/widget/ListViewDemo.dart';
 import 'package:package_info/package_info.dart';
 
 void main() => runApp(MyApp());
@@ -121,12 +122,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 '$_counter',
                 style: Theme.of(context).textTheme.display1,
               ),
+              FlatButton(
+                onPressed: (){
+                  Navigator.push(context, new MaterialPageRoute(builder: (context){
+                    return new ListWidget();
+                  }));
+                },
+                child: Text("List Demo"),
+              )
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _getVersion,
+        onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
