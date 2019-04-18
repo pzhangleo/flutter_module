@@ -17,7 +17,7 @@ class _ListState extends State<ListWidget> {
   @override
   void initState() {
     super.initState();
-    loadData(true);
+    loadData(null);
   }
 
   @override
@@ -27,12 +27,7 @@ class _ListState extends State<ListWidget> {
           title: Text("List Demo"),
           centerTitle: true,
         ),
-        body: new SmartRefresher(
-            enablePullDown: true,
-            enablePullUp: true,
-            onRefresh: _onRefresh,
-            controller: _refreshController,
-            child: getListView()));
+        body: getView());
   }
 
   void _onRefresh(bool up) {
@@ -44,13 +39,30 @@ class _ListState extends State<ListWidget> {
       Response response = await HttpManager.getDio("")
           .get("https://jsonplaceholder.typicode.com/posts");
       print(response.data.toString());
-      _refreshController.sendBack(up, RefreshStatus.completed);
+      if (up != null) {
+        _refreshController.sendBack(up, RefreshStatus.completed);
+      }
       setState(() {
         data = response.data;
       });
     } catch (e) {
-      _refreshController.sendBack(up, RefreshStatus.failed);
+      if (up != null) {
+        _refreshController.sendBack(up, RefreshStatus.failed);
+      }
       print(e);
+    }
+  }
+
+  Widget getView() {
+    if(data.isNotEmpty) {
+      return new SmartRefresher(
+          enablePullDown: true,
+          enablePullUp: true,
+          onRefresh: _onRefresh,
+          controller: _refreshController,
+          child: getListView());
+    }else {
+      return Center(child: new CircularProgressIndicator(),);
     }
   }
 
