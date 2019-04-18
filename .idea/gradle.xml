@@ -7,7 +7,7 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.flutter-io.cn/package_info-0.4.0+2/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.flutter-io.cn/package_info-0.4.0+3/android" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/m_flutter/.android/Flutter" />
